@@ -3,11 +3,8 @@ package main
 import (
 	"CRM/modules/admin"
 	"CRM/modules/customers"
-	"fmt"
-	"log"
-	"os"
-
 	"github.com/joho/godotenv"
+	"log"
 
 	"github.com/gin-gonic/gin"
 	"gorm.io/driver/mysql"
@@ -19,13 +16,14 @@ func initDB() (*gorm.DB, error) {
 	if err != nil {
 		log.Fatal("Error loading .env file")
 	}
-	host := os.Getenv("MYSQL_HOST")
-	user := os.Getenv("MYSQL_USERNAME")
-	password := os.Getenv("MYSQL_PASSWORD")
-	dbPort := os.Getenv("MYSQL_PORT")
-	dbname := os.Getenv("MYSQL_DBNAME")
+	//host := os.Getenv("MYSQL_HOST")
+	//user := os.Getenv("MYSQL_USERNAME")
+	//password := os.Getenv("MYSQL_PASSWORD")
+	//dbPort := os.Getenv("MYSQL_PORT")
+	//dbname := os.Getenv("MYSQL_DBNAME")
+	//dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local", user, password, host, dbPort, dbname)
 	//dsn := "root:root123@tcp(localhost:3306)/crm?parseTime=true"
-	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local", user, password, host, dbPort, dbname)
+	dsn := "root:password@tcp(db:3306)/crm?parseTime=true"
 
 	return gorm.Open(mysql.Open(dsn), &gorm.Config{})
 }
